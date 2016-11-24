@@ -7,6 +7,10 @@ class KNN():
 
     def predict(self, X_test, k):
         k_neighbors = self.closest(k)[0:k]
+        k_indeces = []
+        for i in range(k):
+            k_indeces.append(k_neighbors[i][0])
+        print k_indeces
 
     def closest(self, k):
         distances = []
