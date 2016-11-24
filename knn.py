@@ -6,18 +6,24 @@ class KNN():
         self.Y_train = Y_train
 
     def predict(self, X_test, k):
-        k_neighbors = self.closest(k)[0:k]
-        k_indeces = []
-        for i in range(k):
-            k_indeces.append(k_neighbors[i][0])
-        print k_indeces
+        predictions = []
+        for row in X_test:
+            label = self.closest(row,k)
+            predictions.append(label)
+        return predictions
 
-    def closest(self, k):
+    def closest(self, row, k):
         distances = []
         for i in range(len(self.X_train)):
             distances.append((i,distance.euclidean(i,self.X_train[i])))
-        distances = sorted(distances, key=lambda x:x[1])
-        return distances
+        distances = sorted(distances, key=lambda x:x[1])[0:k]
+        k_indeces = []
+        for i in range(k):
+            k_indeces.append(distances[i][0])
+        k_labels = []
+        for i in range(k):
+            k_labels.append(self.Y_train[k_indeces[i]])
+        print k_labels
 
 from sklearn import datasets
 iris = datasets.load_iris()
@@ -33,7 +39,7 @@ classifier = KNN()
 
 classifier.fit(X_train, Y_train)
 
-k = 5 # change this
+k = 3 # change this
 predictions = classifier.predict(X_test, k)
 
 from sklearn.metrics import accuracy_score
