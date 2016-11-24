@@ -9,14 +9,6 @@ class KNN():
         k_neighbors = self.closest(k)[0:k]
 
     def closest(self, k):
-        '''best_dist = distance.euclidean(row, self.X_train[0])
-        best_index = 0
-        for i in range(1, len(self.X_train)):
-            dist = distance.euclidean(row, self.X_train[i])
-            if dist < best_dist:
-                best_dist = dist
-                best_index = i
-        return self.Y_train[best_index]'''
         distances = []
         for i in range(len(self.X_train)):
             distances.append((i,distance.euclidean(i,self.X_train[i])))
