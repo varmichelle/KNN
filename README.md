@@ -3,4 +3,4 @@ An implementation of the K Nearest Neighbors Algorithm from scratch in python (u
 
 Simple KNN (k=1) consistently achieves 90-98% accuracy.
 
-KNN (k=variable) currently being worked on.
+KNN (k=variable) for k <= 5 does slightly better, but > 5ish does worse.
