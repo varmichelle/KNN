@@ -25,6 +25,8 @@ class KNN():
             k_labels.append(self.Y_train[k_indeces[i]])
         print k_labels
 
+k = input("Enter k: ")
+
 from sklearn import datasets
 iris = datasets.load_iris()
 
@@ -37,10 +39,11 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = .75)
 from sklearn.neighbors import KNeighborsClassifier
 classifier = KNN()
 
+print "Training classifier..."
 classifier.fit(X_train, Y_train)
-
-k = 3 # change this
+print "Successfully trained classifier"
+print "Making predictions"
 predictions = classifier.predict(X_test, k)
-
+print "Completed making predictions"
 from sklearn.metrics import accuracy_score
-print accuracy_score(Y_test, predictions)
+print "Accuracy: "+ accuracy_score(Y_test, predictions) + "%"
