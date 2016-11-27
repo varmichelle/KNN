@@ -1,4 +1,5 @@
 from scipy.spatial import distance
+from collections import Counter
 
 class KNN():
     def fit(self, X_train, Y_train):
@@ -15,7 +16,7 @@ class KNN():
     def closest(self, row, k):
         distances = []
         for i in range(len(self.X_train)):
-            distances.append((i,distance.euclidean(i,self.X_train[i])))
+            distances.append((i,distance.euclidean(row,self.X_train[i])))
         distances = sorted(distances, key=lambda x:x[1])[0:k]
         k_indeces = []
         for i in range(k):
@@ -23,7 +24,8 @@ class KNN():
         k_labels = []
         for i in range(k):
             k_labels.append(self.Y_train[k_indeces[i]])
-        print k_labels
+        c = Counter(k_labels)
+        return c.most_common()[0][0]
 
 k = input("Enter k: ")
 
@@ -46,4 +48,4 @@ print "Making predictions"
 predictions = classifier.predict(X_test, k)
 print "Completed making predictions"
 from sklearn.metrics import accuracy_score
-print "Accuracy: "+ accuracy_score(Y_test, predictions) + "%"
+print "Accuracy:", accuracy_score(Y_test, predictions)*100, "%"
