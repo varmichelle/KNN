@@ -39,9 +39,9 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = .75)
 from sklearn.neighbors import KNeighborsClassifier
 classifier = KNN()
 
-print "Training classifier..."
+print "Fitting classifier..."
 classifier.fit(X_train, Y_train)
-print "Successfully trained classifier"
+print "Successfully fitted classifier"
 print "Making predictions"
 predictions = classifier.predict(X_test, k)
 print "Completed making predictions"
